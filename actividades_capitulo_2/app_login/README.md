@@ -1,8 +1,8 @@
 # Flutter Login App
 
-**Nombre del estudiante:** Jimena Correa
-**Curso:** Lenguajes de programación para móviles
-**Fecha:** 26 de mayo de 2026
+**Nombre del estudiante:** Jimena Correa <br>
+**Curso:** Lenguajes de programacion para moviles <br>
+**Fecha:** 26 de mayo de 2026<br>
 
 ---
 
