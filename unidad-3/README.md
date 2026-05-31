@@ -128,8 +128,6 @@ Las historias están priorizadas de mayor a menor valor funcional para el estudi
 
 Se comparan cuatro enfoques de desarrollo para el contexto específico del problema.
 
-![Matriz comparativa de enfoques técnicos](imagenes/matriz_comparativa.png)
-
 | Criterio | PWA | Híbrida (Ionic + Capacitor) | Nativa Android | Flutter |
 |---|---|---|---|---|
 | **Costo de desarrollo** | ✅ Bajo – solo web estándar | ✅ Bajo-medio – una base de código | ❌ Alto – código exclusivo Android/iOS | ✅ Bajo-medio – una base de código |
@@ -179,21 +177,15 @@ Dart es un lenguaje tipado estáticamente, con una curva de aprendizaje menor qu
 
 ## 5. Arquitectura Mínima Viable
 
-### Diagrama de capas
+El siguiente diagrama muestra la organización en capas del sistema, desde la interfaz de usuario hasta el backend externo:
 
-![Arquitectura mínima viable – App Flutter EduTech](imagenes/arquitectura_capas.png)
-
-La arquitectura está organizada en **5 capas** que se comunican de arriba hacia abajo:
-
-| Capa | Responsabilidad |
-|---|---|
-| **Presentación (UI)** | 5 pantallas Flutter con Material Design 3 |
-| **Lógica de negocio (BLoC)** | Gestión del estado: ActividadesBloc, EvidenciasBloc, SyncBloc, NotificacionesBloc |
-| **Datos** | ApiRestService (Dio), LocalDB (sqflite), SyncQueue (cola FIFO offline) |
-| **Servicios nativos** | Plugins: camera, geolocator, local_notifications, connectivity_plus |
-| **Backend / API REST** | GET /actividades, POST /evidencias, POST /notificaciones/token |
+![Arquitectura por capas](imagenes/arquitectura-capas.svg)
 
 ### Pantallas principales
+
+El siguiente mapa ilustra las pantallas de la aplicación y cómo se navega entre ellas:
+
+![Mapa de pantallas y navegación](imagenes/mapa-pantallas.svg)
 
 | Pantalla | Descripción |
 |---|---|
@@ -221,6 +213,11 @@ La arquitectura está organizada en **5 capas** que se comunican de arriba hacia
 ## 6. Consideraciones Móviles
 
 ### 6.1 Conectividad limitada
+
+El siguiente diagrama muestra el flujo completo de sincronización offline-first implementado en la aplicación:
+
+![Flujo de sincronización offline](imagenes/flujo-offline.svg)
+
 La app implementa una arquitectura **offline-first**: al iniciar, intenta sincronizar con la API; si no hay conexión, opera con los datos locales (SQLite). Las peticiones POST fallidas (registro de evidencias) se encolan en la tabla `sync_queue` y se reintentan automáticamente cuando `connectivity_plus` detecta que la red está disponible. Se muestra un banner no intrusivo indicando el modo offline.
 
 ### 6.2 Bajo consumo de datos
@@ -272,10 +269,8 @@ Los permisos se solicitan en el momento en que se necesitan (just-in-time), con 
 > El video tiene una duración máxima de 4 minutos y cubre los siguientes puntos:
 > 1. El problema que busca resolver.
 > 2. Las funcionalidades principales de la aplicación.
-> 3. El enfoque tecnológico seleccionado (Flutter).
-> 4. La arquitectura propuesta.
-> 5. La justificación de la decisión tecnológica.
+> 3. El enfoque tecnológico seleccionado y su justificación.
+> 4. La arquitectura propuesta explicada por capas.
+> 5. Decisiones técnicas clave: offline-first, rendimiento y seguridad.
 
 ---
-
-*Documento generado para la Actividad Evaluativa de la Unidad 3 – Lenguaje de Computación para Móviles.*
