@@ -128,6 +128,8 @@ Las historias están priorizadas de mayor a menor valor funcional para el estudi
 
 Se comparan cuatro enfoques de desarrollo para el contexto específico del problema.
 
+![Matriz comparativa de enfoques técnicos](imagenes/matriz_comparativa.png)
+
 | Criterio | PWA | Híbrida (Ionic + Capacitor) | Nativa Android | Flutter |
 |---|---|---|---|---|
 | **Costo de desarrollo** | ✅ Bajo – solo web estándar | ✅ Bajo-medio – una base de código | ❌ Alto – código exclusivo Android/iOS | ✅ Bajo-medio – una base de código |
@@ -179,67 +181,17 @@ Dart es un lenguaje tipado estáticamente, con una curva de aprendizaje menor qu
 
 ### Diagrama de capas
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                   CAPA DE PRESENTACIÓN (UI)              │
-│  ┌─────────────┐ ┌──────────────┐ ┌──────────────────┐  │
-│  │ Pantalla    │ │ Pantalla     │ │ Pantalla         │  │
-│  │ Actividades │ │ Detalle      │ │ Registro         │  │
-│  │ (Home)      │ │ Actividad    │ │ Evidencia        │  │
-│  └─────────────┘ └──────────────┘ └──────────────────┘  │
-│  ┌─────────────┐ ┌──────────────┐                        │
-│  │ Pantalla    │ │ Pantalla     │                        │
-│  │ Notificac.  │ │ Perfil/Config│                        │
-│  └─────────────┘ └──────────────┘                        │
-└────────────────────────┬────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────┐
-│               CAPA DE LÓGICA DE NEGOCIO (BLoC / Provider)│
-│  ┌──────────────────┐  ┌───────────────────────────────┐ │
-│  │ ActividadesBloc  │  │ EvidenciasBloc                │ │
-│  │ - cargarLista()  │  │ - adjuntarFoto()              │ │
-│  │ - filtrarEstado()│  │ - registrarUbicacion()        │ │
-│  └──────────────────┘  └───────────────────────────────┘ │
-│  ┌──────────────────┐  ┌───────────────────────────────┐ │
-│  │ SyncBloc         │  │ NotificacionesBloc            │ │
-│  │ - sincronizar()  │  │ - programarAlarma()           │ │
-│  │ - estadoRed()    │  │ - cancelarAlarma()            │ │
-│  └──────────────────┘  └───────────────────────────────┘ │
-└────────────────────────┬────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────┐
-│                    CAPA DE DATOS                         │
-│  ┌────────────────┐  ┌──────────────┐  ┌─────────────┐  │
-│  │ ApiRestService │  │ LocalDB      │  │ SyncQueue   │  │
-│  │ (Dio / http)   │  │ (sqflite)    │  │ (pendientes)│  │
-│  │ GET /actividad │  │ Tablas:      │  │ Cola FIFO   │  │
-│  │ POST /evidencia│  │ - actividades│  │ offline     │  │
-│  └────────────────┘  │ - evidencias │  └─────────────┘  │
-│                       │ - sync_queue │                   │
-│                       └──────────────┘                   │
-└────────────────────────┬────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────┐
-│                 SERVICIOS NATIVOS (Plugins Flutter)       │
-│  ┌────────────┐ ┌──────────────┐ ┌────────────────────┐ │
-│  │ camera     │ │ geolocator   │ │ flutter_local_     │ │
-│  │ plugin     │ │ plugin       │ │ notifications      │ │
-│  └────────────┘ └──────────────┘ └────────────────────┘ │
-│  ┌────────────┐ ┌──────────────┐                         │
-│  │ connectivity│ │ permission_  │                        │
-│  │ _plus      │ │ handler      │                        │
-│  └────────────┘ └──────────────┘                         │
-└────────────────────────┬────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────┐
-│              BACKEND / API REST EXTERNA                  │
-│  Endpoints:                                              │
-│  GET  /api/actividades          → lista de actividades   │
-│  GET  /api/actividades/{id}     → detalle               │
-│  POST /api/evidencias           → registrar evidencia    │
-│  POST /api/notificaciones/token → registrar token FCM    │
-└─────────────────────────────────────────────────────────┘
-```
+![Arquitectura mínima viable – App Flutter EduTech](imagenes/arquitectura_capas.png)
+
+La arquitectura está organizada en **5 capas** que se comunican de arriba hacia abajo:
+
+| Capa | Responsabilidad |
+|---|---|
+| **Presentación (UI)** | 5 pantallas Flutter con Material Design 3 |
+| **Lógica de negocio (BLoC)** | Gestión del estado: ActividadesBloc, EvidenciasBloc, SyncBloc, NotificacionesBloc |
+| **Datos** | ApiRestService (Dio), LocalDB (sqflite), SyncQueue (cola FIFO offline) |
+| **Servicios nativos** | Plugins: camera, geolocator, local_notifications, connectivity_plus |
+| **Backend / API REST** | GET /actividades, POST /evidencias, POST /notificaciones/token |
 
 ### Pantallas principales
 
