@@ -3,7 +3,7 @@
 
 | | |
 |---|---|
-| **Estudiante** | [Tu Nombre Completo] |
+| **Estudiante** | Jimena Correa Gómez |
 | **Asignatura** | Lenguaje de Computación para Móviles |
 | **Unidad** | Unidad 3 – Desarrollo web multiplataforma orientado a dispositivos móviles |
 | **Fecha** | 2026-05-25 |
@@ -179,13 +179,13 @@ Dart es un lenguaje tipado estáticamente, con una curva de aprendizaje menor qu
 
 El siguiente diagrama muestra la organización en capas del sistema, desde la interfaz de usuario hasta el backend externo:
 
-![Arquitectura por capas](imagenes/arquitectura-capas.png)
+![Arquitectura por capas](arquitectura-capas.png)
 
 ### Pantallas principales
 
 El siguiente mapa ilustra las pantallas de la aplicación y cómo se navega entre ellas:
 
-![Mapa de pantallas y navegación](imagenes/mapa-pantallas.png)
+![Mapa de pantallas y navegación](mapa-pantallas.png)
 
 | Pantalla | Descripción |
 |---|---|
@@ -216,7 +216,7 @@ El siguiente mapa ilustra las pantallas de la aplicación y cómo se navega entr
 
 El siguiente diagrama muestra el flujo completo de sincronización offline-first implementado en la aplicación:
 
-![Flujo de sincronización offline](imagenes/flujo-offline.png)
+![Flujo de sincronización offline](flujo-offline.png)
 
 La app implementa una arquitectura **offline-first**: al iniciar, intenta sincronizar con la API; si no hay conexión, opera con los datos locales (SQLite). Las peticiones POST fallidas (registro de evidencias) se encolan en la tabla `sync_queue` y se reintentan automáticamente cuando `connectivity_plus` detecta que la red está disponible. Se muestra un banner no intrusivo indicando el modo offline.
 
@@ -274,5 +274,3 @@ Los permisos se solicitan en el momento en que se necesitan (just-in-time), con 
 > 5. Decisiones técnicas clave: offline-first, rendimiento y seguridad.
 
 ---
-
-*Documento elaborado como entrega de la Actividad Evaluativa de la Unidad 3 — Lenguaje de Computación para Móviles.*
