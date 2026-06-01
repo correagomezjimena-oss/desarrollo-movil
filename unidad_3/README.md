@@ -6,7 +6,7 @@
 | **Estudiante** | Jimena Correa Gómez |
 | **Asignatura** | Lenguaje de Computación para Móviles |
 | **Unidad** | Unidad 3 – Desarrollo web multiplataforma orientado a dispositivos móviles |
-| **Fecha** | 2026-05-25 |
+| **Fecha** | 2026-06-01 |
 | **Modalidad** | Individual |
 
 ---
@@ -264,9 +264,9 @@ Los permisos se solicitan en el momento en que se necesitan (just-in-time), con 
 
 ## 8. Video de Sustentación
 
-🎥 **Enlace al video:** [Insertar enlace de YouTube/Vimeo aquí]
+🎥 **Enlace al video:** [https://youtube.com/@jimenacorreagomez3688?si=4Qzy1QchorYB_bPG]
 
-> El video tiene una duración máxima de 4 minutos y cubre los siguientes puntos:
+> El video tiene una duración máxima de 6:35 minutos y cubre los siguientes puntos:
 > 1. El problema que busca resolver.
 > 2. Las funcionalidades principales de la aplicación.
 > 3. El enfoque tecnológico seleccionado y su justificación.
