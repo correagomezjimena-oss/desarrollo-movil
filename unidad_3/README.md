@@ -264,7 +264,7 @@ Los permisos se solicitan en el momento en que se necesitan (just-in-time), con 
 
 ## 8. Video de Sustentación
 
-🎥 **Enlace al video:**https://youtu.be/BTTVsBjGAPs?si=7uYS45Kpg-ELoYSh
+Enlace al video:https://youtu.be/BTTVsBjGAPs?si=7uYS45Kpg-ELoYSh
 
 > El video tiene una duración máxima de 6:35 minutos y cubre los siguientes puntos:
 > 1. El problema que busca resolver.
